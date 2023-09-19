@@ -1,5 +1,6 @@
 package com.example.tp3_fragments.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.example.tp3_fragments.MainActivity
 import com.example.tp3_fragments.R
 
 class RegisterPrompt : Fragment() {
@@ -35,7 +37,6 @@ class RegisterPrompt : Fragment() {
 
     fun loginTextClick(view: View) {
         view.findNavController().navigateUp()
-        //(activity as FragmentUser).changeFragment(LoginPrompt())
     }
 
     fun registerButtonClick(view: View) {
@@ -44,6 +45,10 @@ class RegisterPrompt : Fragment() {
         alert.setTitle("Register Attempt")
         alert.setMessage("Tried to register '${userField.text}'")
         alert.setPositiveButton("Close", null)
+        alert.setPositiveButton("Close") { dialogInterface, i ->
+            val switchActivity = Intent(context, MainActivity::class.java)
+            startActivity(switchActivity)
+        }
         alert.show()
     }
 }

@@ -5,18 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#144c73"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/main_nav" />
+        app:navGraph="@navigation/login_nav" />
+
+    <TextView
+        android:id="@+id/loginVolver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_return"
+        android:textAlignment="center"
+        android:textColor="#b0defa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

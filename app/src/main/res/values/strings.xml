@@ -10,4 +10,6 @@
     <string name="login_no_account">No tienes cuenta? Registrate</string>
     <string name="register_has_account">Ya tienes cuenta? Log in</string>
     <string name="main_return">Volver</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

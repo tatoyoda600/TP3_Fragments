@@ -3,24 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/loginPrompt">
+    app:startDestination="@id/recyclerList">
 
     <fragment
-        android:id="@+id/loginPrompt"
-        android:name="com.example.tp3_fragments.fragments.LoginPrompt"
-        android:label="fragment_login_prompt"
-        tools:layout="@layout/fragment_login_prompt" >
+        android:id="@+id/recyclerList"
+        android:name="com.example.tp3_fragments.fragments.RecyclerList"
+        android:label="fragment_recycler_list"
+        tools:layout="@layout/fragment_recycler_list" >
         <action
-            android:id="@+id/action_loginPrompt_to_registerPrompt"
-            app:destination="@id/registerPrompt" />
+            android:id="@+id/action_recyclerList_to_viewItem"
+            app:destination="@id/viewItem" />
     </fragment>
     <fragment
-        android:id="@+id/registerPrompt"
-        android:name="com.example.tp3_fragments.fragments.RegisterPrompt"
-        android:label="fragment_register_prompt"
-        tools:layout="@layout/fragment_register_prompt" >
+        android:id="@+id/viewItem"
+        android:name="com.example.tp3_fragments.fragments.ViewItem"
+        android:label="fragment_view_item"
+        tools:layout="@layout/fragment_view_item" >
         <argument
-            android:name="username"
-            app:argType="string" />
+            android:name="recyclerObject"
+            app:argType="com.example.tp3_fragments.entities.RecyclerObject" />
     </fragment>
 </navigation>
