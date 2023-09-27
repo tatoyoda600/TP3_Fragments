@@ -22,7 +22,8 @@ class RecyclerObjectListAdapter(
 
     override fun onBindViewHolder(holder: RecyclerObjectHolder, position: Int) {
         val obj = list[position]
-        holder.setValor(obj.valor)
+        holder.setAvatar(obj.avatar)
+        holder.setName(obj.name)
 
         holder.getCardLayout().setOnClickListener{
             onItemClick.onViewItemDetail(obj)
