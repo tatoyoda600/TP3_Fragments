@@ -10,9 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tp3_fragments.adapters.RecyclerObjectListAdapter
 import com.example.tp3_fragments.databinding.FragmentRecyclerListBinding
-import com.example.tp3_fragments.entities.RecyclerObject
 import com.example.tp3_fragments.listeners.OnViewItemClickedListener
-import com.example.tp3_fragments.models.User
+import com.example.tp3_fragments.models.Cat
 import com.example.tp3_fragments.services.ApiInterface
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
@@ -26,10 +25,8 @@ const val BASE_URL : String = "https://api.api-ninjas.com/v1/"
 class RecyclerList : Fragment(), OnViewItemClickedListener {
     lateinit var v: View
     lateinit var recycler: RecyclerView
-    var list : MutableList<RecyclerObject> = ArrayList<RecyclerObject>()
+    var list : List<Cat> = ArrayList()
     private lateinit var linearLayoutManager: LinearLayoutManager
-    private lateinit var recyclerObjectListAdapter: RecyclerObjectListAdapter
-
     lateinit var binding : FragmentRecyclerListBinding
 
     companion object {
@@ -44,7 +41,6 @@ class RecyclerList : Fragment(), OnViewItemClickedListener {
         binding = FragmentRecyclerListBinding.inflate(inflater, container, false)
         // = inflater.inflate(R.layout.fragment_recycler_list, container, false)
         v = binding.root
-        //recycler = v.findViewById(R.id.recycler)
         recycler = binding.recycler
         return v
     }
@@ -52,19 +48,6 @@ class RecyclerList : Fragment(), OnViewItemClickedListener {
     override fun onStart() {
         super.onStart()
         getData()
-        /*
-        list.clear()
-
-        list.add(RecyclerObject("Hola 1"))
-        list.add(RecyclerObject("Hola 2"))
-        list.add(RecyclerObject("Hola 3"))
-        list.add(RecyclerObject("Hola 4"))
-        list.add(RecyclerObject("Hola 5"))
-        list.add(RecyclerObject("Hola 6"))
-        list.add(RecyclerObject("Hola 7"))
-        list.add(RecyclerObject("Hola 8"))
-        list.add(RecyclerObject("Hola 9"))
-        */
 
         requireActivity()
 
@@ -72,16 +55,12 @@ class RecyclerList : Fragment(), OnViewItemClickedListener {
         linearLayoutManager = LinearLayoutManager(context)
         recycler.layoutManager = linearLayoutManager
         recycler.adapter = RecyclerObjectListAdapter(list, this)
-        /*
-        recyclerObjectListAdapter = RecyclerObjectListAdapter(list, this)
-        recycler.adapter = recyclerObjectListAdapter
-        */
     }
 
-    override fun onViewItemDetail(obj: RecyclerObject) {
+    override fun onViewItemDetail(obj: Cat) {
         val action = RecyclerListDirections.actionRecyclerListToViewItem(obj)
         this.findNavController().navigate(action)
-        Snackbar.make(v, obj.name, Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(v, obj.name.orEmpty(), Snackbar.LENGTH_SHORT).show()
     }
 
     fun getData() {
@@ -95,18 +74,14 @@ class RecyclerList : Fragment(), OnViewItemClickedListener {
 
         var data = retrofit.getData(0.1f, 10)
 
-        data.enqueue(object : Callback<List<User>> {
-            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-                var data = response.body()!!
-                list.clear()
-                for (d in data) {
-                    list.add(RecyclerObject(d.image_link, d.name))
-                }
+        data.enqueue(object : Callback<List<Cat>> {
+            override fun onResponse(call: Call<List<Cat>>, response: Response<List<Cat>>) {
+                list = response.body()!!
                 recycler.adapter = RecyclerObjectListAdapter(list, this@RecyclerList)
                 recycler.hasPendingAdapterUpdates()
             }
 
-            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+            override fun onFailure(call: Call<List<Cat>>, t: Throwable) {
                 TODO("Not yet implemented")
             }
         })

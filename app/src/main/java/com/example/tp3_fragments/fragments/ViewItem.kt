@@ -10,20 +10,27 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 
 import com.example.tp3_fragments.R
+import com.example.tp3_fragments.databinding.FragmentViewItemBinding
 
 class ViewItem : Fragment() {
     lateinit var v: View
-    lateinit var info: TextView
     lateinit var img: ImageView
+    lateinit var name: TextView
+    lateinit var origin: TextView
+    lateinit var length: TextView
+    lateinit var binding : FragmentViewItemBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        v = inflater.inflate(R.layout.fragment_view_item, container, false)
-        info = v.findViewById(R.id.txtInfo)
-        img = v.findViewById(R.id.imgAvatar)
+        binding = FragmentViewItemBinding.inflate(inflater, container, false)
+        //v = inflater.inflate(R.layout.fragment_view_item, container, false)
+        v = binding.root
+        img = binding.imgAvatar
+        name = binding.txtName
+        origin = binding.txtOrigin
+        length = binding.txtLength
         return v
     }
 
@@ -33,8 +40,10 @@ class ViewItem : Fragment() {
         arguments?.let {
             val obj = ViewItemArgs.fromBundle(it).recyclerObject
 
-            Glide.with(this).load(obj.avatar).into(img)
-            info.text = obj.name
+            Glide.with(this).load(obj.image_link).into(img)
+            name.text = obj.name
+            origin.text = obj.origin
+            length.text = obj.length
         }
     }
 }

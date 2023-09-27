@@ -21,6 +21,6 @@
         tools:layout="@layout/fragment_view_item" >
         <argument
             android:name="recyclerObject"
-            app:argType="com.example.tp3_fragments.entities.RecyclerObject" />
+            app:argType="com.example.tp3_fragments.models.Cat" />
     </fragment>
 </navigation>

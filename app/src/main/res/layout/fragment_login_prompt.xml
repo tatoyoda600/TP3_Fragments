@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:text="@string/login_prompt_title"
             android:textAlignment="center"
-            android:textColor="#b0defa"
+            android:textColor="@color/mainText"
             android:textSize="34sp" />
 
         <Space
@@ -43,7 +43,7 @@
             android:hint="@string/username_input_placeholder"
             android:inputType="text"
             android:padding="11dp"
-            android:textColor="#b0defa"
+            android:textColor="@color/mainText"
             android:textSize="20sp" />
 
         <Space
@@ -60,7 +60,7 @@
             android:inputType="text"
             android:padding="11dp"
             android:password="true"
-            android:textColor="#b0defa"
+            android:textColor="@color/mainText"
             android:textSize="20sp" />
 
         <Space
@@ -71,9 +71,9 @@
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#b0defa"
+            android:backgroundTint="@color/mainText"
             android:text="@string/login_prompt_submit"
-            android:textColor="#808080"
+            android:textColor="@color/secondaryText"
             app:cornerRadius="5dp" />
 
         <TextView
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:text="@string/login_lost_password"
             android:textAlignment="center"
-            android:textColor="#b0defa" />
+            android:textColor="@color/mainText" />
 
         <TextView
             android:id="@+id/loginCreateAccount"
@@ -91,7 +91,7 @@
             android:clickable="true"
             android:text="@string/login_no_account"
             android:textAlignment="center"
-            android:textColor="#b0defa" />
+            android:textColor="@color/mainText" />
 
         <Space
             android:layout_width="match_parent"

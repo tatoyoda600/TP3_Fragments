@@ -13,29 +13,33 @@ import androidx.appcompat.app.AlertDialog
 import androidx.navigation.findNavController
 import com.example.tp3_fragments.MainActivity
 import com.example.tp3_fragments.R
+import com.example.tp3_fragments.databinding.FragmentLoginPromptBinding
 
 class LoginPrompt : Fragment() {
+    lateinit var v: View
+    lateinit var binding : FragmentLoginPromptBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val v : View = inflater.inflate(R.layout.fragment_login_prompt, container, false)
-        v.findViewById<Button>(R.id.loginButton).setOnClickListener { loginButtonClick(v) }
-        v.findViewById<TextView>(R.id.loginCreateAccount).setOnClickListener { registerTextClick(v) }
+        binding = FragmentLoginPromptBinding.inflate(inflater, container, false)
+        //v = inflater.inflate(R.layout.fragment_login_prompt, container, false)
+        v= binding.root
+        binding.loginButton.setOnClickListener { loginButtonClick(v) }
+        binding.loginCreateAccount.setOnClickListener { registerTextClick(v) }
         return v
     }
 
     fun registerTextClick(view: View) {
-        val username : TextView = view.findViewById(R.id.loginUserInput)
-        view.findNavController().navigate(LoginPromptDirections.actionLoginPromptToRegisterPrompt(username.text.toString()))
+        view.findNavController().navigate(LoginPromptDirections.actionLoginPromptToRegisterPrompt(binding.loginUserInput.text.toString()))
     }
 
     fun loginButtonClick(view: View) {
-        val userField : TextView = view.findViewById(R.id.loginUserInput)
         val alert = AlertDialog.Builder(requireContext())
         alert.setTitle("Login Attempt")
-        alert.setMessage("Tried to log in to '${userField.text}'")
+        alert.setMessage("Tried to log in to '${binding.loginUserInput.text}'")
         alert.setPositiveButton("Close") { dialogInterface, i ->
             val switchActivity = Intent(context, MainActivity::class.java)
             startActivity(switchActivity)

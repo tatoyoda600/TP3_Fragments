@@ -1,8 +1,7 @@
 package com.example.tp3_fragments.listeners
 
-import com.example.tp3_fragments.entities.RecyclerObject
-import com.example.tp3_fragments.models.User
+import com.example.tp3_fragments.models.Cat
 
 interface OnViewItemClickedListener {
-    fun onViewItemDetail(obj: RecyclerObject) {}
+    fun onViewItemDetail(obj: Cat) {}
 }
